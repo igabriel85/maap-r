@@ -1,0 +1,37 @@
+---
+inline:
+  schemaVersion: 2.2.2
+  metadata:
+    name: jupyter-ide
+    displayName: MAAP Jupyter Lab R IDE
+    description: Jupyter Lab R IDE for MAAP
+    icon: /images/notebook.svg
+    attributes:
+      publisher: igabriel85
+      version: 1.0.1
+      title: Jupyter Lab IDE R for MAAP
+      repository: https://github.com/igabriel85/maap-r-ide/tree/main
+      firstPublicationDate: 2024-12-04
+  components:
+    - name: jupyter-ide
+      container:
+        image: quay.io/igabriel185/maap-r-ide:latest
+        env:
+          - name: JUPYTER_NOTEBOOK_DIR
+            value: /projects
+          - name: CONDA_ENVS_PATH
+            value: /projects/envs
+        mountSources: true
+        memoryLimit: 32Gi
+        imagePullPolicy: IfNotPresent
+        endpoints:
+          - name: jupyter
+            targetPort: 8888
+            exposure: public
+            protocol: https
+            secure: true
+            attributes:
+              type: main
+        attributes:
+          ports:
+            - exposedPort: 8888
