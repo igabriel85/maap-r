@@ -1,0 +1,5 @@
+schemaVersion: 2.2.2
+metadata:
+  name: maap-jupyter-r
+components:
+  - name: maapr
